@@ -1,0 +1,23 @@
+monolog:
+    handlers:
+        main:
+            type: rotating_file
+            path: '%kernel.logs_dir%/ecommerce.log'
+            action_level: error
+            channels: ['!doctrine', '!event']
+        console:
+            type: console
+            process_psr_3_messages: false
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: INFO
+                VERBOSITY_VERY_VERBOSE: DEBUG
+            channels: ["!event", "!doctrine"]
+        deprecation:
+            type: rotating_file
+            path: '%kernel.logs_dir%/ecommerce.log'
+        deprecation_filter:
+            type: filter
+            handler: deprecation
+            max_level: info
+            channels: ["php"]
