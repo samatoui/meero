@@ -1,4 +1,8 @@
-CRM-V6
+Test Orders
 =====
 
-A Symfony project created on July 21, 2017, 2:43 pm.
+* create orders database (in env it's root:root): change it if necessary
+
+* make update-schema
+
+* php bin/console orders:FetchOrders  ~/**/**/orders-test.xml
