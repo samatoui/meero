@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+
+{% block body %}
+    <form method="POST" action="{{ path('order_search') }}">
+        <div>
+            <span>Rechercher</span>
+            <input type="text" name="search">
+            <button id="submit_search">Chercher</button>
+        </div>
+    </form>
+
+    <div id="display_search">
+        {% include 'partials/_result_search.html.twig' with {'pagination': pagination} %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function() {
+            $('body').on('click', '#submit_search', function(e) {
+                e.preventDefault();
+                var _formData = new FormData();
+                var _form     = $(this).closest('form');
+                var _div      = $('#display_search');
+
+                _form.serializeArray().reduce(function(obj, item) {
+                    _formData.append(item.name, item.value);
+                }, {});
+
+                $.ajax({
+                    type: 'POST',
+                    url: _form.attr('action'),
+                    data: _formData,
+                    processData: false,
+                    contentType: false
+                }).then(function (response) {
+                    _div.html(response);
+                }).fail(function () {
+                    alert('An error occured');
+                });
+            });
+        });
+    </script>
+{% endblock %}

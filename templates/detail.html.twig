@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    order - {{ order.id }}
+{% endblock %}
+
+
+{% block body %}
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="row menuMiddle">
+        <thead>
+            <tr>
+                <th>MarketPlace</th>
+                <th>orderId</th>
+                <th>FluxId</th>
+                <th>mrId</th>
+                <th>refId</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr align="center">
+                <td>{{ order.marketPlace }}</td>
+                <td>{{ order.orderId }}</td>
+                <td>{{ order.fluxId }}</td>
+                <td>{{ order.mrId }}</td>
+                <td>{{ order.refId }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

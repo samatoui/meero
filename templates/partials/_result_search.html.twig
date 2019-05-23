@@ -1,0 +1,37 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="row menuMiddle">
+    <thead>
+    <tr>
+        <th></th>
+        <th>MarketPlace</th>
+        <th>orderId</th>
+        <th>FluxId</th>
+        <th>mrId</th>
+        <th>refId</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for index, object in pagination %}
+        <tr align="center">
+            <td><a href="{{ path("order_detail", {id: object.id} ) }}">{{ object.id }}</a></td>
+            <td>{{ object.marketPlace }}</td>
+            <td>{{ object.orderId }}</td>
+            <td>{{ object.fluxId }}</td>
+            <td>{{ object.mrId }}</td>
+            <td>{{ object.refId }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% if pagination.totalItemCount > 0 %}
+    <center>
+        <div class="container-pagination">
+                    <span class="txt_pagelink">
+                        {{ pagination.totalItemCount }}
+                        résultats
+                        ({{ pagination.pageCount }} page(s))
+                    </span>
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </center>
+{% endif %}
